@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .container-form {
+        max-width: 380px;
+        margin: 60px auto;
+        padding: 20px;
+        background: #2d2d2d;
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+        font-family: Arial, sans-serif;
+    }
+
+    .container-form h2 {
+        text-align: center;
+        margin-bottom: 15px;
+        font-size: 20px;
+    }
+
+    label {
+        display: block;
+        margin-top: 10px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .container-form input,
+    .container-form textarea,
+    .container-form select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: none;
+        background: #444;
+        color: white;
+    }
+
+    .check-container {
+        margin-top: 5px;
+    }
+
+    .container-form button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 15px;
+        border: none;
+        border-radius: 5px;
+        background: #4CAF50;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .container-form button:hover {
+        background: #45a049;
+    }
+
+    .btn-voltar {
+        display: block;
+        text-align: center;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+        background: #555;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .btn-voltar:hover {
+        background: #666;
+    }
+</style>
+
+<div class="container-form">
+    <h2>Criar Tarefa</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>Título</label>
+        {{ form.titulo }}
+
+        <label>Descrição</label>
+        {{ form.descricao }}
+
+        <label>Data de entrega</label>
+        {{ form.data_entrega }}
+
+        <label>Concluída?</label>
+        <div class="check-container">
+            {{ form.concluida }}
+        </div>
+
+        <button type="submit">Salvar</button>
+    </form>
+
+    <a href="{% url 'task_list' %}" class="btn-voltar">Voltar</a>
+</div>
+{% endblock %}

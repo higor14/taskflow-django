@@ -5,5 +5,5 @@ urlpatterns = [
     path('', views.task_list, name='task_list'),
     path('concluidas', views.tasks_ok, name='tasks_ok'),
       path('pendentes', views.tasks_nok, name='tasks_nok'),
-
+      path('nova/', views.create_task, name='create_task'),
 ]
