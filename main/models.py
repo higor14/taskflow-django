@@ -24,7 +24,7 @@ class Task(models.Model):
         default=Priority.MEDIA
         )
     data_limite = models.DateField("Data limite", null=True, blank=True)
-    criado_em = models.DateField("Criado em", null=True, blank=True)
+    criado_em = models.DateField("Criado em", auto_now=True)
     atualizado_em = models.DateTimeField("Atualizado em", auto_now_add=True)
 
     class Meta:

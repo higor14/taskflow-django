@@ -6,4 +6,6 @@ urlpatterns = [
     path('concluidas', views.tasks_ok, name='tasks_ok'),
       path('pendentes', views.tasks_nok, name='tasks_nok'),
       path('nova/', views.create_task, name='create_task'),
+      path('update/<int:id>/', views.update_task, name='update_task'),
+      path('deletar/<int:id>/', views.deletar_task, name='deletar_task'),
 ]

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from main.models import Task
 from main.forms import TaskForm
 
@@ -38,9 +38,24 @@ def create_task(request):
             return redirect('task_list')
         
     else:
-        form = TaskForm
+        form = TaskForm()
             
     context = {'form': form}
     return render(request, 'tasks/task_form.html', context)
-                
-    
+
+#Atualizar tabela
+
+def update_task(request, id):
+    task = get_object_or_404(Task, id=id)
+    form = TaskForm(request.POST or None, instance=task)
+    if form.is_valid():
+        form.save()
+        return redirect('task_list')
+    return render(request, 'tasks/task_form.html', {'form': form})
+
+#deletar objeto da lista
+
+def deletar_task(request, id):
+    task = get_object_or_404(Task, id=id)
+    task.delete()
+    return redirect('task_list')
