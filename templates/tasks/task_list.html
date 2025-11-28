@@ -1,7 +1,20 @@
 {% extends "base.html" %}
 {% block content%}
 
+<form method="GET" action="{% url 'task_list' %}">
+    <label for="prioridade">Filtrar por Prioridade:</label>
+    <select name="prioridade" id="prioridade">
+        <option value="">-- Todos --</option>
+        <option value="baixa" {% if prioridade == 'baixa' %}selected{% endif %}>Baixa</option>
+        <option value="media" {% if prioridade == 'media' %}selected{% endif %}>Média</option>
+        <option value="alta" {% if prioridade == 'alta' %}selected{% endif %}>Alta</option>
+    </select>
+      
 
+
+
+    <button type="submit" class="btn btn-primary">Filtrar</button>
+</form>
 
 
 
@@ -12,6 +25,8 @@
       <th scope="col">Titulo</th>
       <th scope="col">Descricao</th>
       <th scope="col">status</th>
+      <th scope="col">prioridade</th>
+      <th scope="col">Data limite</th>
       <th scope="col">Criado em</th>
     </tr>
   </thead>
@@ -22,6 +37,8 @@
         <td>{{ i.titulo}}</td>
         <td>{{ i.descricao}}</td>
         <td>{{ i.concluida}}</td>
+        <td>{{ i.get_prioridade_display }}</td>
+        <td>{{ i.data_limite }}
         <td>{{ i.criado_em}}</td>
         
         <td>
@@ -30,6 +47,8 @@
       onclick="return confirm('Tem certeza que deseja excluir esta tarefa?');">
       Excluir
    </a>
+
+    
 </td>
 
         

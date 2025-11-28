@@ -43,6 +43,18 @@ def create_task(request):
     context = {'form': form}
     return render(request, 'tasks/task_form.html', context)
 
+#prioridade
+def task_list_prioridade(request):
+    prioridade = request.GET.get('prioridade')      #Essa linha de código captura o valor do parâmetro prioridade
+    tarefas = Task.objects.all()
+    if prioridade:
+        tarefas =tarefas.filter(prioridade=prioridade)
+        
+    return render(request, 'tasks/task_list.html', {
+            'tarefas': tarefas,
+            'prioridade': prioridade,
+        })
+
 #Atualizar tabela
 
 def update_task(request, id):

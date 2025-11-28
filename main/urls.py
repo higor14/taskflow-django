@@ -8,4 +8,5 @@ urlpatterns = [
       path('nova/', views.create_task, name='create_task'),
       path('update/<int:id>/', views.update_task, name='update_task'),
       path('deletar/<int:id>/', views.deletar_task, name='deletar_task'),
+      path('taks/', views.task_list_prioridade, name='task_list_prioridade'),
 ]
